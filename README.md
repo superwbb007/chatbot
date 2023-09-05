@@ -92,4 +92,28 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/streamlit_chatbox/messages.py", line 64, in history
     return st.session_state.get(self._session_key).get(self._chat_name)
 AttributeError: 'NoneType' object has no attribute 'get'
+***********************************************
+
+^[2023-09-05 12:13:09,812 - _client.py[line:1013] - INFO: HTTP Request: POST http://127.0.0.1:7861/chat/chat "HTTP/1.1 200 OK"
+2023-09-05 12:13:58,924 - _client.py[line:1013] - INFO: HTTP Request: POST http://127.0.0.1:7861/knowledge_base/upload_doc "HTTP/1.1 500 Internal Server Error"
+2023-09-05 12:13:58.926 Uncaught app exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/streamlit/runtime/scriptrunner/script_runner.py", line 552, in _run_script
+    exec(code, module.__dict__)
+  File "/langchain-ChatGLM-dev/webui.py", line 57, in <module>
+    pages[selected_page]["func"](api)
+  File "/langchain-ChatGLM-dev/webui_pages/knowledge_base/knowledge_base.py", line 124, in knowledge_base_page
+    ret = api.upload_kb_doc(f, kb)
+  File "/langchain-ChatGLM-dev/webui_pages/utils.py", line 480, in upload_kb_doc
+    return response.json()
+  File "/usr/local/lib/python3.10/dist-packages/httpx/_models.py", line 756, in json
+    return jsonlib.loads(self.text, **kwargs)
+  File "/usr/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
 
