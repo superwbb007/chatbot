@@ -115,5 +115,49 @@ Traceback (most recent call last):
   File "/usr/lib/python3.10/json/decoder.py", line 355, in raw_decode
     raise JSONDecodeError("Expecting value", s, err.value) from None
 json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+*******************************************
+File "/usr/local/lib/python3.10/dist-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/streamlit/runtime/scriptrunner/script_runner.py", line 552, in _run_script
+    exec(code, module.__dict__)
+  File "/langchain-ChatGLM-dev/webui.py", line 57, in <module>
+    pages[selected_page]["func"](api)
+  File "/langchain-ChatGLM-dev/webui_pages/dialogue/dialogue.py", line 112, in dialogue_page
+    for d in api.knowledge_base_chat(prompt, selected_kb, kb_top_k, history):
+  File "/langchain-ChatGLM-dev/webui_pages/utils.py", line 211, in _httpx_stream2generator
+    for chunk in r.iter_text(None):
+  File "/usr/local/lib/python3.10/dist-packages/httpx/_models.py", line 844, in iter_text
+    for byte_content in self.iter_bytes():
+  File "/usr/local/lib/python3.10/dist-packages/httpx/_models.py", line 823, in iter_bytes
+    for raw_bytes in self.iter_raw():
+  File "/usr/local/lib/python3.10/dist-packages/httpx/_models.py", line 881, in iter_raw
+    for raw_stream_bytes in self.stream:
+  File "/usr/local/lib/python3.10/dist-packages/httpx/_client.py", line 123, in __iter__
+    for chunk in self._stream:
+  File "/usr/local/lib/python3.10/dist-packages/httpx/_transports/default.py", line 103, in __iter__
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.10/dist-packages/httpx/_transports/default.py", line 77, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)
+2023-09-06 02:52:50.133 Uncaught app exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/streamlit/runtime/scriptrunner/script_runner.py", line 552, in _run_script
+    exec(code, module.__dict__)
+  File "/langchain-ChatGLM-dev/webui.py", line 57, in <module>
+    pages[selected_page]["func"](api)
+  File "/langchain-ChatGLM-dev/webui_pages/dialogue/dialogue.py", line 104, in dialogue_page
+    chat_box.update_msg(text, streaming=False)  # 更新最终的字符串，去除光标
+  File "/usr/local/lib/python3.10/dist-packages/streamlit_chatbox/messages.py", line 191, in update_msg
+    old_element = self.history[history_index]["elements"][element_index]
+  File "/usr/local/lib/python3.10/dist-packages/streamlit_chatbox/messages.py", line 64, in history
+    return st.session_state.get(self._session_key).get(self._chat_name)
+AttributeError: 'NoneType' object has no attribute 'get'
 
 
